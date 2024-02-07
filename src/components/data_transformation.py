@@ -13,6 +13,8 @@ import pandas as pd
 import numpy as np 
 from dataclasses import dataclass
 
+from utils import saved_object
+
 
 @dataclass
 class DatatransforamtinConfig:
@@ -62,7 +64,7 @@ class DataTransformation():
             return preprocessor
         
         except Exception as e : 
-            raise CustomExeption(sys,e)
+            raise CustomExeption(e,sys)
 
     def initiate_data_transformation(self): 
         try:
@@ -89,10 +91,27 @@ class DataTransformation():
             input_feature_train_df_arr = preprocessor_obj.fit_transform(input_feature_train_df)
             input_feature_test_df_arr = preprocessor_obj.transform(input_feature_test_df)
 
+            train_arr = np.c_(input_feature_train_df_arr,np.array(target_feature_train_df))
+            test_arr = np.c_[input_feature_test_df_arr,np.array(target_feature_test_df)]
+
+            logging.info(f'saved preprocessing object')
+
+
+            saved_object(self.Data_transormation_config.preprossor_obj_file_path,obj=preprocessor_obj)
+
+
+            return(
+                train_arr,
+                test_arr,
+                self.Data_transormation_config.preprossor_obj_file_path
+            )
+
+
+
             
 
 
 
         except Exception as e :
-            raise CustomExeption(sys,e)
+            raise CustomExeption(e,sys)
         
