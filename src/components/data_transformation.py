@@ -1,5 +1,5 @@
 from src.logger import logging 
-from src.exception import CustomExeption 
+from src.exception import CustomException
 
 from sklearn.compose import ColumnTransformer 
 from sklearn.preprocessing import OneHotEncoder ,StandardScaler
@@ -64,7 +64,7 @@ class DataTransformation():
             return preprocessor
         
         except Exception as e : 
-            raise CustomExeption(e,sys)
+            raise CustomException(e, sys)
 
     def initiate_data_transformation(self): 
         try:
@@ -113,5 +113,5 @@ class DataTransformation():
 
 
         except Exception as e :
-            raise CustomExeption(e,sys)
+            raise CustomException(e, sys)
         

@@ -6,7 +6,7 @@ import dill
 import pickle
 from sklearn.metrics import r2_score
 
-from exception import CustomExeption 
+from exception import CustomException
 
 def saved_object(file_path,obj): 
     try: 
@@ -17,7 +17,7 @@ def saved_object(file_path,obj):
             pickle.dump(obj,file_obj) 
 
     except Exception  as e : 
-        raise CustomExeption(e,sys)
+        raise CustomException(e, sys)
 
 def evaluate_models(X_train,y_train,X_test,y_test,models): 
     try: 
@@ -38,4 +38,4 @@ def evaluate_models(X_train,y_train,X_test,y_test,models):
 
 
     except Exception as e : 
-        raise CustomExeption(e,sys)
+        raise CustomException(e, sys)

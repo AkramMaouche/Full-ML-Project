@@ -4,7 +4,7 @@ import sys
 import pandas as pd 
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
-from src.exception import CustomExeption
+from src.exception import CustomException
 from src.logger import logging
 from src.components.data_transformation import DataTransformation
 
@@ -42,7 +42,7 @@ class DataIngestion:
 
                 )
         except Exception as e:
-            raise CustomExeption(e,sys)
+            raise CustomException(e, sys)
 
 if __name__=="__main__": 
     obj = DataIngestion()
