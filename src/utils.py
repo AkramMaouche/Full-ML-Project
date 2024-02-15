@@ -2,11 +2,11 @@ import os
 import sys 
 import pandas as pd 
 import numpy as np  
-import dill 
+#import dill 
 import pickle
 from sklearn.metrics import r2_score
 
-from exception import CustomExeption 
+from src.exception import CustomExeption 
 
 def saved_object(file_path,obj): 
     try: 
@@ -21,7 +21,7 @@ def saved_object(file_path,obj):
 
 def evaluate_models(X_train,y_train,X_test,y_test,models): 
     try: 
-        report = []
+        report = {}
 
         for i in range(len(list(models))):
             model = list(models.values())[i]
@@ -35,6 +35,7 @@ def evaluate_models(X_train,y_train,X_test,y_test,models):
 
             report[list(models.keys())[i]] = test_model_score
 
+            return report
 
 
     except Exception as e : 
