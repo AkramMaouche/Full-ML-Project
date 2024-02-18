@@ -112,6 +112,6 @@ class DataTransformation:
             )
         
         except Exception as e:
-            raise CustomExeption(e,sys) 
+            raise CustomException(e,sys)
             
 
