@@ -8,7 +8,7 @@ from piplines.predict_pipline import Customdata,PredictPiplines
 from sklearn.preprocessing import StandardScaler
 
 
-application = Flask(__name__)
+application = Flask(__name__,static_url_path='/static')
 
 app = application
 
@@ -20,7 +20,7 @@ def index():
 @app.route('/predictData',methods = ['GET','POST'])
 def predict_datapoint(): 
     if request.method == 'GET':
-        return render_template('Home.html')
+        return render_template('home.html')
     else: 
         data = Customdata(
             gender=request.form.get('gender'),# get them from the home html page 
@@ -36,8 +36,9 @@ def predict_datapoint():
 
         predict_pipilene = PredictPiplines()
         results = predict_pipilene.predict(pred_df)
+        results = results.round(2)
         return render_template('home.html',results = results[0])
 
 
 if __name__=="__main__": 
-    app.run(host="0.0.0.0",debug=True)
+    app.run(host="0.0.0.0",debug=False)
